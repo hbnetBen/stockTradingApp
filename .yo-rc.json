@@ -1,0 +1,42 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.stocktrading.hb",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "6.4.1",
+    "applicationType": "monolith",
+    "baseName": "stockTradingApp",
+    "packageName": "com.stocktrading.hb",
+    "packageFolder": "com/stocktrading/hb",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "mongodb",
+    "devDatabaseType": "mongodb",
+    "prodDatabaseType": "mongodb",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "ZjE3ZDllMjhmYTkwZDk4YzkzZmQ4NDM0Nzg4ODA3YWMxODY3OTRkY2FjZmNhOTU0NGI0NjhmZjA2ZTk4ZDMxMjQwNTM5MThiMmEwOWNlMDkxYTkzODQwOGY1YTUwN2UxMTVmZTZlYjE3MDJhNWYyNWFkYWE2ZGJlODQ0NmJjNDM=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "skipClient": true,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "en",
+    "languages": [
+      "en"
+    ],
+    "blueprints": []
+  }
+}
