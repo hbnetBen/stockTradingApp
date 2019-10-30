@@ -60,12 +60,16 @@ public class AccountResource {
      */
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
-    public void registerAccount(@Valid @RequestBody ManagedUserVM managedUserVM) {
+    public UserDTO registerAccount(@Valid @RequestBody ManagedUserVM managedUserVM) { //CHANGE RETURN TYPE TO VOID IN PRODUCTION
         if (!checkPasswordLength(managedUserVM.getPassword())) {
             throw new InvalidPasswordException();
         }
         User user = userService.registerUser(managedUserVM, managedUserVM.getPassword());
-        mailService.sendActivationEmail(user);
+        //mailService.sendActivationEmail(user);  //uncomment in production
+
+        /* REMOVE BLOCK BELOW IN PRODUCTION */
+        return Optional.of(user).map(UserDTO::new)
+            .orElseThrow(() -> new AccountResourceException("User could not be found"));
     }
 
     /**
