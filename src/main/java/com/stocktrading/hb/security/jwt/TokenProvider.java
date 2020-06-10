@@ -5,6 +5,7 @@ import java.security.Key;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import com.stocktrading.hb.security.MyUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
@@ -27,6 +28,7 @@ public class TokenProvider implements InitializingBean {
     private final Logger log = LoggerFactory.getLogger(TokenProvider.class);
 
     private static final String AUTHORITIES_KEY = "auth";
+    private static final String OWNER_KEY = "owner";
 
     private Key key;
 
@@ -65,6 +67,8 @@ public class TokenProvider implements InitializingBean {
             .map(GrantedAuthority::getAuthority)
             .collect(Collectors.joining(","));
 
+        String owner = ((MyUser)authentication.getPrincipal()).getOwner();
+
         long now = (new Date()).getTime();
         Date validity;
         if (rememberMe) {
@@ -75,6 +79,7 @@ public class TokenProvider implements InitializingBean {
 
         return Jwts.builder()
             .setSubject(authentication.getName())
+            .claim(OWNER_KEY, owner)
             .claim(AUTHORITIES_KEY, authorities)
             .signWith(key, SignatureAlgorithm.HS512)
             .setExpiration(validity)

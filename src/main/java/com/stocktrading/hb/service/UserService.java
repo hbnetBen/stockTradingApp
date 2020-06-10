@@ -8,6 +8,9 @@ import com.stocktrading.hb.repository.UserRepository;
 import com.stocktrading.hb.security.AuthoritiesConstants;
 import com.stocktrading.hb.security.SecurityUtils;
 import com.stocktrading.hb.service.dto.UserDTO;
+import com.stocktrading.hb.service.except.EmailAlreadyUsedException;
+import com.stocktrading.hb.service.except.InvalidPasswordException;
+import com.stocktrading.hb.service.except.UsernameAlreadyUsedException;
 import com.stocktrading.hb.service.util.RandomUtil;
 
 import org.slf4j.Logger;

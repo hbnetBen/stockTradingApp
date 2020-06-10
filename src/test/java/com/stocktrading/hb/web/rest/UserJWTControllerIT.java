@@ -4,7 +4,7 @@ import com.stocktrading.hb.StockTradingApp;
 import com.stocktrading.hb.domain.User;
 import com.stocktrading.hb.repository.UserRepository;
 import com.stocktrading.hb.security.jwt.TokenProvider;
-import com.stocktrading.hb.web.rest.errors.ExceptionTranslator;
+import com.stocktrading.hb.web.rest.except.ExceptionTranslator;
 import com.stocktrading.hb.web.rest.vm.LoginVM;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

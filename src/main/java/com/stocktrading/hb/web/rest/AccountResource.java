@@ -8,7 +8,7 @@ import com.stocktrading.hb.service.MailService;
 import com.stocktrading.hb.service.UserService;
 import com.stocktrading.hb.service.dto.PasswordChangeDTO;
 import com.stocktrading.hb.service.dto.UserDTO;
-import com.stocktrading.hb.web.rest.errors.*;
+import com.stocktrading.hb.web.rest.except.*;
 import com.stocktrading.hb.web.rest.vm.KeyAndPasswordVM;
 import com.stocktrading.hb.web.rest.vm.ManagedUserVM;
 
@@ -16,6 +16,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -60,7 +61,7 @@ public class AccountResource {
      */
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
-    public UserDTO registerAccount(@Valid @RequestBody ManagedUserVM managedUserVM) { //CHANGE RETURN TYPE TO VOID IN PRODUCTION
+    public ResponseEntity<UserDTO> registerAccount(@Valid @RequestBody ManagedUserVM managedUserVM) { //CHANGE RETURN TYPE TO VOID IN PRODUCTION
         if (!checkPasswordLength(managedUserVM.getPassword())) {
             throw new InvalidPasswordException();
         }
@@ -68,8 +69,7 @@ public class AccountResource {
         //mailService.sendActivationEmail(user);  //uncomment in production
 
         /* REMOVE BLOCK BELOW IN PRODUCTION */
-        return Optional.of(user).map(UserDTO::new)
-            .orElseThrow(() -> new AccountResourceException("User could not be found"));
+        return new ResponseEntity<>(Optional.of(user).map(UserDTO::new).get(), null, HttpStatus.CREATED);
     }
 
     /**

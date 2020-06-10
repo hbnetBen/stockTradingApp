@@ -36,6 +36,7 @@ public final class SecurityUtils {
             });
     }
 
+
     /**
      * Get the JWT of the current user.
      *
@@ -47,6 +48,24 @@ public final class SecurityUtils {
             .filter(authentication -> authentication.getCredentials() instanceof String)
             .map(authentication -> (String) authentication.getCredentials());
     }
+
+    /**
+     * Get the login of the current user.
+     *
+     * @return the login of the current user
+     */
+    public static MyUser getCurrentUser() {
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        Authentication authentication = securityContext.getAuthentication();
+        MyUser userName = null;
+        if (authentication != null) {
+            if (authentication.getPrincipal() instanceof MyUser) {
+                userName = (MyUser) authentication.getPrincipal();
+            }
+        }
+        return userName;
+    }
+
 
     /**
      * Check if a user is authenticated.
@@ -76,6 +95,18 @@ public final class SecurityUtils {
     private static Stream<String> getAuthorities(Authentication authentication) {
         return authentication.getAuthorities().stream()
             .map(GrantedAuthority::getAuthority);
+    }
+
+    /**
+     * Get the school partnerId of the current user.
+     *
+     * @return the partnerId of the current user
+     */
+    public static String getOwner() {
+        if(getCurrentUser() == null)
+            return null;
+
+        return getCurrentUser().getOwner();
     }
 
 }

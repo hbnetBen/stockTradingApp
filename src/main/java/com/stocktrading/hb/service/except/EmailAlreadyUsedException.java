@@ -1,4 +1,4 @@
-package com.stocktrading.hb.service;
+package com.stocktrading.hb.service.except;
 
 public class EmailAlreadyUsedException extends RuntimeException {
 

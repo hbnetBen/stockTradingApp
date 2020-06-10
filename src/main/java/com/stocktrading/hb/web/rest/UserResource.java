@@ -7,9 +7,9 @@ import com.stocktrading.hb.security.AuthoritiesConstants;
 import com.stocktrading.hb.service.MailService;
 import com.stocktrading.hb.service.UserService;
 import com.stocktrading.hb.service.dto.UserDTO;
-import com.stocktrading.hb.web.rest.errors.BadRequestAlertException;
-import com.stocktrading.hb.web.rest.errors.EmailAlreadyUsedException;
-import com.stocktrading.hb.web.rest.errors.LoginAlreadyUsedException;
+import com.stocktrading.hb.web.rest.except.BadRequestAlertException;
+import com.stocktrading.hb.web.rest.except.EmailAlreadyUsedException;
+import com.stocktrading.hb.web.rest.except.LoginAlreadyUsedException;
 
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;

@@ -1,3 +1,0 @@
-{generated}/overview.adoc
-{generated}/paths.adoc
-{generated}/definitions.adoc

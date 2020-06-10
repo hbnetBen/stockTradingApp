@@ -9,7 +9,7 @@ import com.stocktrading.hb.service.MailService;
 import com.stocktrading.hb.service.UserService;
 import com.stocktrading.hb.service.dto.UserDTO;
 import com.stocktrading.hb.service.mapper.UserMapper;
-import com.stocktrading.hb.web.rest.errors.ExceptionTranslator;
+import com.stocktrading.hb.web.rest.except.ExceptionTranslator;
 import com.stocktrading.hb.web.rest.vm.ManagedUserVM;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.BeforeEach;
@@ -253,7 +253,7 @@ public class UserResourceIT {
             .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].login").value(hasItem(DEFAULT_LOGIN)))
+            .andExpect(jsonPath("$.[*].username").value(hasItem(DEFAULT_LOGIN)))
             .andExpect(jsonPath("$.[*].firstName").value(hasItem(DEFAULT_FIRSTNAME)))
             .andExpect(jsonPath("$.[*].lastName").value(hasItem(DEFAULT_LASTNAME)))
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
@@ -272,7 +272,7 @@ public class UserResourceIT {
         restUserMockMvc.perform(get("/api/users/{login}", user.getUsername()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.login").value(user.getUsername()))
+            .andExpect(jsonPath("$.username").value(user.getUsername()))
             .andExpect(jsonPath("$.firstName").value(DEFAULT_FIRSTNAME))
             .andExpect(jsonPath("$.lastName").value(DEFAULT_LASTNAME))
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL))
